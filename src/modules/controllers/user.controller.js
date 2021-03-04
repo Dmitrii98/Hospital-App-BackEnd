@@ -9,10 +9,14 @@ module.exports.getAllUsers = (req, res, next) => {
 
 module.exports.createUser = async (req, res, next) => {
   const {login, password} = req.body;
+  const candidate = await User.findOne({login})
+  if (candidate) {
+    return res.status(400).send({error: 'User is already created'})
+  }
   const hashPassword = await bcrypt.hash(password, 15);
   const user = new User({login, password: hashPassword});
   await user.save().then((result) => {
-      res.send({data: result});
+    res.send({data: result});
   });
 };
 
