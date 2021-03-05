@@ -1,6 +1,5 @@
 const User = require('../../db/models/users/index');
 const bcrypt = require('bcryptjs');
-const config = require('config');
 const jwt = require('jsonwebtoken');
 const secretKey = 'secret-key';
 
