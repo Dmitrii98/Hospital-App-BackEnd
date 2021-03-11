@@ -29,12 +29,11 @@ module.exports.deleteAppointment = (req, res, next) => {
   });
 };
 
+module.exports.updateAppointment = (req, res, next) => {
+  Appointment.updateOne({_id: req.body._id}, req.body).then(result => {
+    Appointment.find().then(result => {
+      res.send({data: result});
+    });
+  });
+};
 
-// module.exports.updateItem = (req, res, next) => {
-//   Purchase.updateOne({_id: req.body._id},req.body).then(result => {
-//     Purchase.find().then(result => {
-//       res.send({data: result});
-//     });
-//   });
-// };
-//
